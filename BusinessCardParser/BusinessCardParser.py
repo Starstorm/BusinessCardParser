@@ -44,8 +44,19 @@ if __name__ == '__main__':
     ap.add_argument("-f", "--file", required=True, help="Business card text file")
     ap.add_argument("-o", "--output", help="Output text for file. If not used, will display to screen.")
     my_args = vars(ap.parse_args())
-    print(my_args)
-    my_parser = BusinessCartParser()
-       
+
+    my_parser = BusinessCardParser()
+    with open(my_args['file'],"r") as card_file:
+        document = card_file.read()
+    my_contact_info = my_parser.getConactInfo(document)
+    if my_args['output']:
+        with open(my_args['output'], "w") as output_file:
+            output_file.write(my_contact_info.getName())
+            output_file.write(my_contact_info.getEmail())
+            output_file.write(my_contact_info.getPhone())
+    else:
+        print(my_contact_info.getName())
+        print(my_contact_info.getEmail())
+        print(my_contact_info.getPhone())
     
     
