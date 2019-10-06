@@ -70,12 +70,6 @@ if __name__ == '__main__':
     my_contact_info = my_parser.getConactInfo(document)
     if my_args['output']:
         with open(my_args['output'], "w") as output_file:
-            output_file.write(my_contact_info.getName())
-            output_file.write(my_contact_info.getEmail())
-            output_file.write(my_contact_info.getPhone())
+            output_file.write(str(my_contact_info))
     else:
-        print(my_contact_info.getName())
-        print(my_contact_info.getEmail())
-        print(my_contact_info.getPhone())
-    
-    
+        print(str(my_contact_info))
