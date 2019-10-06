@@ -57,8 +57,7 @@ class ContactInfo(object):
         return self.email_address
     
 if __name__ == '__main__':
-    import argparse, spacy, re, subprocess, names_dataset
-    subprocess.run(["python", "-m","spacy","download","en"])
+    import argparse, spacy, re, names_dataset
     
     ap = argparse.ArgumentParser()
     ap.add_argument("-f", "--file", required=True, help="Business card text file")
