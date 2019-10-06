@@ -40,12 +40,12 @@ class BusinessCardParser(object):
 if __name__ == '__main__':
     import argparse
 
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                    help='an integer for the accumulator')
-    parser.add_argument('--sum', dest='accumulate', action='store_const',
-                    const=sum, default=max,
-                    help='sum the integers (default: find the max)')
-
-    args = parser.parse_args()
-    print(args.accumulate(args.integers))
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-f", "--file", required=True, help="Business card text file")
+    ap.add_argument("-o", "--output", help="Output text for file. If not used, will display to screen.")
+    my_args = vars(ap.parse_args())
+    print(my_args)
+    my_parser = BusinessCartParser()
+       
+    
+    
