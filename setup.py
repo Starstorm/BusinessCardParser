@@ -4,5 +4,5 @@ setup(
     name='BusinessCardParser',
     version='1.0.0',
     packages=['names_dataset','spacy'],
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
 )
