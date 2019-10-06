@@ -6,6 +6,7 @@ class BusinessCardParser(object):
         self.name_ner = spacy.load('en_core_web_sm')
         
     def getContactInfo(self, document):
+        document = self.cleanDoc(document)
         name = self.extractName(document)
         email, phone = self.extractEmailPhone(document)
         return ContactInfo(name, phone, email)
@@ -37,6 +38,11 @@ class BusinessCardParser(object):
             if email_re and email == "UNKNOWN":
                 email = email_re.group().strip()
         return email, phone
+    
+    def cleanDoc(self, document):
+        doc_lines = document.split("\n")
+        doc_cleaned = "\n".join([line.replace("\t"," ").strip() for line in doc_lines if line.strip() != ""])
+        return doc_cleaned
 
 class ContactInfo(object):
     def __init__(self, name, phone_number, email_address):
