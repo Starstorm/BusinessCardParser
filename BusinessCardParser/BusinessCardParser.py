@@ -67,7 +67,7 @@ if __name__ == '__main__':
     my_parser = BusinessCardParser()
     with open(my_args['file'],"r") as card_file:
         document = card_file.read()
-    my_contact_info = my_parser.getConactInfo(document)
+    my_contact_info = my_parser.getContactInfo(document)
     if my_args['output']:
         with open(my_args['output'], "w") as output_file:
             output_file.write(str(my_contact_info))
