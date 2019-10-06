@@ -1,4 +1,31 @@
 class BusinessCardParser(object):
+    """
+    A class used to represent the BusinessCardParser
+    ...
+
+    Attributes
+    ----------
+    phone_regex : str
+        a regex string to match a US-based phone number. Will NOT match international phone numbers!
+    email_regex : str
+        a regex string to match an email address. Does not check if a domain actually exists, however.
+    name_db : NameDataset object
+        a NameDataset object which contains approximately 160k human first names (Western characters only)
+    name_ner : spacy.lang.en.English object
+        An object used for Named Entity Recognition (NER) tasks in the English language.
+
+    Methods
+    -------
+    ContactInfo getContactInfo(String document)
+        Extracts the name, email address, and phone number from the provided document string. Meant for internal use.
+    String extractName(String document)
+        Extracts the name from the provided document string
+    String[] extractEmailPhone(String document)
+        Extracts the email address and phone number from the provided document string. Meant for internal use.
+    String cleanDoc(String document)
+        Conducts basic cleaning activities for the text to clear out excessive newline characters, trailing spaces, and tabs.
+    """
+
     def __init__(self):
         self.phone_regex = '(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?'
         self.email_regex = """(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"""
@@ -45,6 +72,31 @@ class BusinessCardParser(object):
         return doc_cleaned
 
 class ContactInfo(object):
+"""
+    A class used to represent the ContactInfo object
+    ...
+
+    Attributes
+    ----------
+    name : str
+        The individual's name. Defaults to UNKNOWN.
+    phone_number : str
+        The individual's phone number. Defaults to UNKNOWN.
+    email_address : str
+       The individual's email address. Defaults to UNKNOWN.
+
+    Methods
+    -------
+    String getName()
+        Basic getter method for individual's name.
+    String getPhoneNumber()
+        Basic getter method for individual's phone number.
+    String getEmailAddress()
+        Basic getter method for individual's email address.
+    String __str__()
+        Define stringification for ContactInfo object. Stringifies the ContactInfo object as specified in the instructions provided at https://asymmetrik.com/programming-challenges/.
+    """
+
     def __init__(self, name, phone_number, email_address):
         self.name = name
         self.phone_number = phone_number
