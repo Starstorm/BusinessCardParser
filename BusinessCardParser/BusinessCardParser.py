@@ -33,17 +33,31 @@ class BusinessCardParser(object):
         self.name_ner = spacy.load('en_core_web_sm')
         
     def getContactInfo(self, document):
+        # Clean the document
         document = self.cleanDoc(document)
+        
+        # Extract the name, email, and phone
         name = self.extractName(document)
         email, phone = self.extractEmailPhone(document)
+        
+        # Return ContactInfo object
         return ContactInfo(name, phone, email)
     
     def extractName(self, document):
         name = "UNKNOWN"
+        
+        # Run Named Entity Recognition on the document
         entities = self.name_ner(document)
-        people = [str(elem) for elem in entities.ents if elem.label_ == "PERSON" and str(elem).count(" ") > 0]
+        
+        # Extract all identified PERSONs in the document with more than one word
+        people = [str(elem) for elem in entities.ents if elem.label_ == "PERSON" and str(elem).strip().count(" ") > 0]
+        
+        # If only one person is found, that becomes the name
         if len(people) == 1:
             name = people[0].replace("\n","").strip()
+        
+        # If more than one person is found, run second layer of name identification with the name_db object.
+        # The first person it finds (i.e. the name closest to the "top" of the business card) is the name we select.
         elif len(people) > 1:
             for person in people:
                 first_name = person.split()[0].strip()
@@ -55,6 +69,9 @@ class BusinessCardParser(object):
     def extractEmailPhone(self, document):
         email = "UNKNOWN"
         phone = "UNKNOWN"
+        
+        # Split document into lines and scan for phone numbers and email addresses.
+        # Once again, find the "top" phone and the "top" email address - if multiple are provided, ignore the bottom ones.
         document_lines = document.split("\n")
         for line in document_lines:
             phone_re = re.search(self.phone_regex,line)
@@ -113,19 +130,38 @@ class ContactInfo(object):
     
     def getEmailAddress(self):
         return self.email_address
-    
+
+# Execution begins here
 if __name__ == '__main__':
-    import argparse, spacy, re, names_dataset
+    # Import required modules
+    import argparse, spacy, re, names_dataset, sys
     
+    # Configure ArgumentParser for command line interface
     ap = argparse.ArgumentParser()
-    ap.add_argument("-f", "--file", required=True, help="Business card text file")
+    ap.add_argument("-f", "--file", help="Business card text file")
+    ap.add_argument("-t", "--text", help="Business card raw text")
     ap.add_argument("-o", "--output", help="Output text for file. If not used, will display to screen.")
     my_args = vars(ap.parse_args())
-
+    
+    # Check if either the file or the raw text parameter is set, but not both.
+    if (not my_args['text'] and not my_args['file']) or (my_args['text'] and my_args['file']):
+        print("[ERROR] Input parameters not set properly. Please use the --help argument for more information on proper usage.")
+        sys.exit(0)
+        
+    # Instantiate BusinessCardParser object
     my_parser = BusinessCardParser()
-    with open(my_args['file'],"r") as card_file:
-        document = card_file.read()
+    
+    # Get the business card text
+    if my_args['file']:
+        with open(my_args['file'],"r") as card_file:
+            document = card_file.read()
+    else:
+        document = my_args['text']
+       
+    # Generate ContactInfo object
     my_contact_info = my_parser.getContactInfo(document)
+    
+    # Output results of ContactInfo object
     if my_args['output']:
         with open(my_args['output'], "w") as output_file:
             output_file.write(str(my_contact_info))
