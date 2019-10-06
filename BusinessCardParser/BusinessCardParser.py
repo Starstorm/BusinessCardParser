@@ -7,7 +7,7 @@ class BusinessCardParser(object):
         
     def getContactInfo(self, document):
         name = self.extractName(document)
-        email, phone = self.extratEmailPhone(document)
+        email, phone = self.extractEmailPhone(document)
         return ContactInfo(name, phone, email)
     
     def extractName(self, document):
