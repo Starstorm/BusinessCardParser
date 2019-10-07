@@ -1,2 +1,2 @@
 import spacy, names_dataset
-from ContactInfo import ContactInfo
+from .ContactInfo import ContactInfo
