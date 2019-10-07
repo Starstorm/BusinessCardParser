@@ -27,7 +27,7 @@ class BusinessCardParser(object):
     """
 
     def __init__(self):
-        import spacy, names_dataset, re, sys
+        import spacy, names_dataset
         from ContactInfo import ContactInfo
         self.name_db = names_dataset.NameDataset()
         self.name_ner = spacy.load('en_core_web_sm')
@@ -94,7 +94,7 @@ class BusinessCardParser(object):
 # Execution begins here
 if __name__ == '__main__':
     # Import required modules
-    import argparse
+    import argparse, re, sys
     
     # Configure ArgumentParser for command line interface
     ap = argparse.ArgumentParser()
