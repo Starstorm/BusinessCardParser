@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import ../BusinessCardParser as bcp
+from BusinessCardParser import BusinessCardParser
 import unittest
 
 
