@@ -8,7 +8,7 @@ class TestSuite(unittest.TestCase):
     """Test cases."""
 
     def test_thoughts(self):
-        my_info = ContactInfo("Derp","Derp","Derp")
+        my_info = BusinessCardParser.ContactInfo("Derp","Derp","Derp")
         print(str(my_info))
 
 if __name__ == '__main__':
