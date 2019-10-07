@@ -27,7 +27,7 @@ class TestSuite(unittest.TestCase):
 		
     def test_contact(self):
         my_info = ContactInfo("Arthur Wilson","17035551259","awilson@abctech.com")
-        self.assertIsInstance( my_info.getName(), str)
+        self.assertIsInstance(my_info.getName(), str)
         self.assertIsInstance(my_info.getPhoneNumber(), str)
         self.assertIsInstance(my_info.getEmailAddress(), str)
         self.assertEqual("Arthur Wilson", my_info.getName())
