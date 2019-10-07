@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-
-from BusinessCardParser import BusinessCardParser, ContactInfo
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from BusinessCardParser.BusinessCardParser import BusinessCardParser
+from BusinessCardParser.ContactInfo import ContactInfo
 import unittest
 
 
