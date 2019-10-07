@@ -26,14 +26,14 @@ class ContactInfo(object):
         self.phone_number = phone_number
         self.email_address = email_address
         
-    def __str__(self):
-        return "Name: " + self.name + "\nPhone: " + self.phone_number + "\nEmail: " + self.email_address
-    
     def getName(self):
         return self.name
     
     def getPhoneNumber(self):
-        return self.name
+        return self.phone_number
     
     def getEmailAddress(self):
         return self.email_address
+    
+    def __str__(self):
+        return "Name: " + self.getName() + "\nPhone: " + self.getPhoneNumber() + "\nEmail: " + self.getEmailAddress()
