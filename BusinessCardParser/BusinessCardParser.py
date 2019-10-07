@@ -92,6 +92,7 @@ class BusinessCardParser(object):
 if __name__ == '__main__':
     # Import required modules
     import argparse, spacy, re, names_dataset, sys
+    import ContactInfo
     
     # Configure ArgumentParser for command line interface
     ap = argparse.ArgumentParser()
