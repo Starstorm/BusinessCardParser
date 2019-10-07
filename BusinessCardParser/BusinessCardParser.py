@@ -28,7 +28,6 @@ class BusinessCardParser(object):
 
     def __init__(self):
         import spacy, names_dataset
-        from ContactInfo import ContactInfo
         self.name_db = names_dataset.NameDataset()
         self.name_ner = spacy.load('en_core_web_sm')
         self.phone_regex = '(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?'
@@ -95,7 +94,7 @@ class BusinessCardParser(object):
 if __name__ == '__main__':
     # Import required modules
     import argparse, re, sys
-    
+    from ContactInfo import ContactInfo
     # Configure ArgumentParser for command line interface
     ap = argparse.ArgumentParser()
     ap.add_argument("-f", "--file", help="Business card text file")
