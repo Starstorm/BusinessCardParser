@@ -20,7 +20,7 @@ class ContactInfo(object):
         Basic getter method for individual's email address.
     String __str__()
         Define stringification for the ContactInfo object. Stringifies the ContactInfo object as specified in the instructions provided at https://asymmetrik.com/programming-challenges/.
-    """
+"""
 
     def __init__(self, name, phone_number, email_address):
         self.name = name
