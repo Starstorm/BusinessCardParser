@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from BusinessCardParser import BusinessCardParser
+from BusinessCardParser import BusinessCardParser, ContactInfo
 import unittest
 
 
-class AdvancedTestSuite(unittest.TestCase):
-    """Advanced test cases."""
+class TestSuite(unittest.TestCase):
+    """Test cases."""
 
     def test_thoughts(self):
-        self.assertIsNone(bcp.hmm())
-
+        pass
 
 if __name__ == '__main__':
     unittest.main()
