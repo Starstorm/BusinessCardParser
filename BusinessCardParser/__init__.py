@@ -1,2 +1,2 @@
-import argparse, spacy, re, names_dataset, sys
+import spacy, names_dataset
 from ContactInfo import ContactInfo
