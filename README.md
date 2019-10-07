@@ -12,7 +12,7 @@ python setup.py install
 cd BusinessCardParser
 ```
 ### Usage Guide
-To extract the contact info from the first example:
+To extract the contact info from the three examples provided:
 ```
 python BusinessCardParser.py -f ../examples/example_1.txt
 python BusinessCardParser.py -f ../examples/example_2.txt
