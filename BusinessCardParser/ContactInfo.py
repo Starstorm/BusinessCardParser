@@ -1,5 +1,6 @@
 class ContactInfo(object):
-"""A class used to represent the ContactInfo object
+    """
+    A class used to represent the ContactInfo object
     ...
     Attributes
     ----------
@@ -18,7 +19,8 @@ class ContactInfo(object):
     String getEmailAddress()
         Basic getter method for individual's email address.
     String __str__()
-        Define stringification for the ContactInfo object. Stringifies the ContactInfo object as specified in the instructions provided at https://asymmetrik.com/programming-challenges."""
+        Define stringification for the ContactInfo object. Stringifies the ContactInfo object as specified in the instructions provided at https://asymmetrik.com/programming-challenges.
+    """
     def __init__(self, name, phone_number, email_address):
         self.name = name
         self.phone_number = phone_number
