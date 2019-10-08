@@ -22,14 +22,22 @@ If you'd prefer to manually enter your text, you can do that as well:
 ```
 python BusinessCardParser.py -t "Business Cart Text...."
 ```
-Finally, you can send the output to a file if you prefer:
+However, please note that the name parser can get confused without newline characters.
+
+You can send the output to a file rather tha on-screen, if you prefer:
 ```
 python BusinessCardParser.py -f ../examples/example_1.txt -o output_card_data.txt
 ```
 
+### Testing
+There is a basic unit test in the folder "tests". To utilize it, first go to the "tests" directory instead of the BusinessCardParser directory. Once there, enter the following command:
+```
+python -m unittest testing.py
+```
+If it gives you an error that ends with "ModuleNotFoundError: No module named 'testing'" it means that you are not in the correct directory.
+
 ### Josh's Notes
 So there were a few points to bring up.
-First and foremost, I was restricted by the interface requirements to making this card reader better. My selection method for name/phone/email is inherently imperfect - it only finds the "top" element if there are multiple matches because there is no specification as to what the preference would be if there are two or more matches. A superior approach would be to have "Name_1", "Name_2", "Home Phone", "Cell Phone", etc. for each element. 
+First and foremost, I was restricted by the interface requirements in terms of making this card reader better. My selection method for name/phone/email is inherently imperfect: it only finds the "top" element if there are multiple matches because there is no specification as to what the preference would be if there are two or more matches. Were the interface to allow it, a superior approach would be to have "Name_1", "Name_2", "Home Phone", "Cell Phone", "Home Email", "Work Email", etc. 
 
-The interface as designed underestimates the variations that can occur on business cards - there are business cards where there are two people listed, such as when a couple owns a business jointly. Additionally, I have seen multiple email addresses and multiple phone numbers - what if the home number and the cell number is provided? Ignoring the cell number because the interface mandates a string be returned and not a list is inherently limiting.
 Also, I added an extra capability - not only can the command line tool accept raw text, it'll also read text from a file. This should allow it an easier time functioning with newline characters especially.
